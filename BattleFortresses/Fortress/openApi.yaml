@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Fortress Service API
+  description: Service acts as a participant in BattleFotresses game 
+  version: '0.0.1'
+servers:
+  - url: 'PLACEHOLDER.herokuapp.com'
+    description: Base URL for Heroku hosted service
+paths:
+  /action:
+    post:
+      summary: Create an action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActionRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/Action'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+
+components:
+  schemas:
+    Action:
+      $ref: ./models/Action.yaml
+    ActionRequest:
+      $ref: ./models/ActionRequest.yaml
+    BadRequest:
+      $ref: ../../common/models/BadRequest.yaml
+    Fortress:
+      $ref: ./models/Fortress.yaml
+    FortressRequest:
+      $ref: ./models/FortressRequest.yaml
+  responses:
+    Action:
+      description: Represents Attack and Defense actions in Battle APIs
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Action'
+    BadRequest:
+      description: Exception for when requests are malformed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+    Fortress:
+      description: Participating Player in Battle APIs
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fortress'
