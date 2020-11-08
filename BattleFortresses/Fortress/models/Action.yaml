@@ -1,0 +1,35 @@
+title: Action
+type: object
+additionalProperties: false
+required:
+  - ID
+properties:
+  source:
+    type: object
+    description: Literal reference to Fortress that made the Action
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        description: URI to Fortress
+        pattern: "^Fortress/"
+  target:
+    type: object
+    description: Literal reference to Fortress targeted by this Action
+    required:
+      - reference
+    properties:
+      reference:
+        type: string
+        description: URI to Fortress
+        pattern: "^Fortress/"
+  type:
+    type: string
+    description: type of Action
+    enum:
+      - attack
+      - defend
+  embedded:
+    type: object
+    description: Embedded Action
